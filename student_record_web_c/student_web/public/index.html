@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Student Record Management</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark">SR</div>
+    <div><h1>Student Records</h1><p>Student Record Management System</p></div>
+    <span class="server-pill"><span class="dot"></span> C backend connected</span>
+  </header>
+
+  <main class="container">
+    <section class="welcome">
+      <div><p class="eyebrow">ADMINISTRATION</p><h2>Student dashboard</h2><p class="muted">Manage student details from one place.</p></div>
+      <button id="refreshBtn" class="button secondary" type="button">↻ Refresh records</button>
+    </section>
+
+    <section class="stats">
+      <article class="stat-card"><span class="stat-icon">▤</span><div><p>Total students</p><strong id="totalStudents">0</strong></div></article>
+      <article class="stat-card"><span class="stat-icon">◎</span><div><p>Average marks</p><strong id="averageMarks">—</strong></div></article>
+      <article class="stat-card"><span class="stat-icon">✓</span><div><p>Passing students</p><strong id="passingStudents">0</strong></div></article>
+    </section>
+
+    <div id="notice" class="notice" role="status" hidden></div>
+
+    <section class="panel">
+      <div class="panel-heading"><div><h3>Add a student</h3><p class="muted">Enter registration number, name and marks.</p></div></div>
+      <form id="studentForm" class="student-form">
+        <label>Registration number<input name="reg_no" required maxlength="120" placeholder="e.g. 251FD01029"></label>
+        <label>Student name<input name="name" required maxlength="240" placeholder="e.g. Arunsai"></label>
+        <label>Marks (0–100)<input name="marks" type="number" required min="0" max="100" step="0.01" placeholder="e.g. 85"></label>
+        <button class="button primary" type="submit">＋ Add student</button>
+      </form>
+    </section>
+
+    <section class="panel">
+      <div class="records-heading"><div><h3>All students</h3><p class="muted">Records stored in the SQLite database.</p></div>
+        <input id="searchInput" class="search" type="search" placeholder="Search by ID or name…" aria-label="Search students">
+      </div>
+      <div class="table-wrap">
+        <table><thead><tr><th>Registration number</th><th>Student name</th><th>Marks</th><th>Result</th><th>Action</th></tr></thead>
+          <tbody id="studentRows"><tr><td colspan="5" class="empty">Loading records…</td></tr></tbody>
+        </table>
+      </div>
+      <p id="recordCount" class="record-count">Loading…</p>
+    </section>
+    <footer>Student Record Management · C + SQLite · Local development</footer>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>
